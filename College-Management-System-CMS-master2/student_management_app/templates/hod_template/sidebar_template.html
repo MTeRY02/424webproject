@@ -1,0 +1,59 @@
+{% load static %}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+            <img src="{% static 'dist/img/logo.png' %}" class="img-circle elevation-2 ml-5" alt="User Image" style="max-width:100%;">
+          </div>
+          <div class="info">
+            {% comment %} <a href="{% url 'student_profile' %}" class="d-block">{{ user.first_name }} {{ user.last_name }}</a> {% endcomment %}
+          </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+
+            <li class="nav-item">
+              {% url 'admin_home' as admin_home %}
+              <a href="{{ admin_home }}" class="nav-link {% if request.path == admin_home %} active {% endif %}">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Home
+                </p>
+              </a>
+            </li>
+
+            
+            <li class="nav-item">
+              {% url 'manage_course' as manage_course %}
+              {% url 'edit_course' course_id=id as edit_course %}
+              <a href="{{ manage_course }}" class="nav-link {% if request.path == manage_course %} active {% endif %} {% if request.path == edit_course %} active {% endif %}">
+                <i class="nav-icon fas fa-chalkboard"></i>
+                <p>
+                  Manage Course
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+            {% url 'add_course' as add_course %}
+              <a href="{{ add_course }}" class="nav-link {% if request.path == add_course %} active {% endif %}">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Add Course
+                </p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
